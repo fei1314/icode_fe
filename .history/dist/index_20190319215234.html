@@ -427,22 +427,11 @@
         async:true,    // 默认为true 异步请求
         success:function(result){    // 成功返回的结果(响应)
         console.log(result)
-          
-            // console.info(result);
-            // if(result){
-            //     $("#label1").text("正确");
-            // }else{
-            //     $("#label1").text("错误");
-            // }
-        }
-      })
-    })
-    $('#login_btn').on('click',function(){
-      $.ajax({
+          $.ajax({
             type:"post",    // 请求类型
             url:"https://www.icode121.com/api/user/ajax/login/cellphone",    // 请求URL
             data:{
-              "user_phone":$('#phone').val(),
+              "user_phone":phone,
               "code":$('#duanxin').val()
             },    // 请求参数 即是 在Servlet中 request.getParement();可以得到的字符串
             dataType:"json",    // 数据返回类型
@@ -455,6 +444,14 @@
               console.log('err')
             }
           })
+            // console.info(result);
+            // if(result){
+            //     $("#label1").text("正确");
+            // }else{
+            //     $("#label1").text("错误");
+            // }
+        }
+      })
     })
     // 点击图片验证码
     $('#verifyImg').on('click',function(){
