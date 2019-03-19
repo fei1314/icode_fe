@@ -438,19 +438,6 @@
         }
       })
     })
-    $.ajax({
-                type:"get",    // 请求类型
-                url:"https://www.icode121.com/api/user/ajax/get_user_info/",    // 请求URL
-                cache:false, // 是否缓存
-                async:true, 
-                success:function(res){
-                  console.log('succ')
-                  $('#username').text(res.msg)
-                },
-                error:function(){
-                  console.log('err')
-                }
-              })
     $('#login_btn').on('click',function(){
       $.ajax({
             type:"post",    // 请求类型
