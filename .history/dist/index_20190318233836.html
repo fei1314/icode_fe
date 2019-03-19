@@ -19,12 +19,74 @@
   <link rel="stylesheet" href="css/icomoon.css" /> 
   <link rel="stylesheet" href="css/bootstrap.css" /> 
   <link rel="stylesheet" href="css/style.css" /> 
-  <link rel="stylesheet" href="css/login.css" />
+  <!-- <link rel="stylesheet" href="css/login.css" /> -->
   <link rel="stylesheet" href="css/iconfont.css" /> 
   <script src="js/modernizr-2.6.2.min.js"></script> 
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
   </script>
- 
+  <script>
+    $(document).ready(function() {
+      //打开会员登录 
+      $("#Login_start_").click(function() {
+        $("#regist_container").hide();
+        $("#_close").show();
+        $("#_start").animate({
+          left: '350px',
+          height: '520px',
+          width: '400px'
+        }, 500, function() {
+          $("#login_container").show(500);
+          $("#_close").animate({
+            height: '40px',
+            width: '40px'
+          }, 500);
+        });
+      });
+      //打开会员注册
+      $("#Regist_start_").click(function() {
+        $("#login_container").hide();
+        $("#_close").show();
+        $("#_start").animate({
+          left: '350px',
+          height: '520px',
+          width: '400px'
+        }, 500, function() {
+          $("#regist_container").show(500);
+          $("#_close").animate({
+            height: '40px',
+            width: '40px'
+          }, 500);
+        });
+      });
+      //关闭
+      $("#_close").click(function() {
+        
+        $("#_close").animate({
+          height: '0px',
+          width: '0px'
+        }, 500, function() {
+          $("#_close").hide(500);
+          $("#login_container").hide(500);
+          $("#regist_container").hide(500);
+          $("#_start").animate({
+            left: '0px',
+            height: '0px',
+            width: '0px'
+          }, 500);
+        });
+      });
+      //去 注册
+      $("#toRegist").click(function(){
+        $("#login_container").hide(500);
+        $("#regist_container").show(500);
+      });
+      //去 登录
+      $("#toLogin").click(function(){
+        $("#regist_container").hide(500);
+        $("#login_container").show(500);
+      });
+    });
+  </script>
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]--> 
@@ -54,23 +116,17 @@
      </div> 
     </div> 
    </nav> 
-   <div class="login-box"> 
+   <!-- <div class="login-box"> 
     <div class="box-con tran"> 
      <div class="login-con f-l"> 
       <div class="form-group"> 
-       <input type="text" placeholder="手机号码" id="phone" /> 
+       <input type="text" placeholder="邮箱/手机号码" /> 
        <span class="error-notic">邮箱/手机号码不正确</span> 
       </div> 
       <div class="form-group"> 
-       <input type="password" placeholder="验证码" id="verify" /> 
+       <input type="password" placeholder="密码" /> 
        <span class="error-notic">密码不正确</span> 
-       <button id="veriftBtn">获取验证码</button>
       </div> 
-      <div class="form-group"> 
-          <!-- <input type="verifyInput" placeholder="验证码" />  -->
-          <span class="error-notic">密码不正确</span> 
-          <img src="http://127.0.0.1:8000/api/other/captcha" alt="" id="verifyImg">
-         </div> 
       <div class="form-group"> 
        <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">登录</a> <img class="loading" src="images/loading.gif" style="display:block" /> </button> 
       </div> 
@@ -182,7 +238,7 @@
       <p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p> 
      </div> 
     </div> 
-   </div> 
+   </div>  -->
    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);"> 
     <div class="overlay"></div> 
     
@@ -402,42 +458,6 @@
   <div class="gototop js-top"> 
    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a> 
   </div> 
-
-  <script>
-    // 获取验证码
-    $('#veriftBtn').on('click',function(){
-      var phone = $('#phone').val();
-      var verify = $('#verify').val();
-
-      console.log('phone',phone)
-      console.log('verify',verify)
-      $.ajax({
-        type:"post",    // 请求类型
-        url:"https://www.icode121.com/api/user/ajax/login/get_cellphone_code",    // 请求URL
-        data:{
-          "user_phone":phone,
-          "captcha":verify
-        },    // 请求参数 即是 在Servlet中 request.getParement();可以得到的字符串
-        dataType:"json",    // 数据返回类型
-        cache:false, // 是否缓存
-        async:true,    // 默认为true 异步请求
-        success:function(result){    // 成功返回的结果(响应)
-        console.log(result)
-            // console.info(result);
-            // if(result){
-            //     $("#label1").text("正确");
-            // }else{
-            //     $("#label1").text("错误");
-            // }
-        }
-      })
-    })
-    // 点击图片验证码
-    $('#verifyImg').on('click',function(){
-      console.log('12')
-        $('#verifyImg').attr('src','https://www.icode121.com/api/other/captcha?rnd'+ Math.random())
-    })
-  </script>
   <script type="text/javascript">
 		var clock = '';
 		var nums = 30;
@@ -721,9 +741,7 @@
 
 	</script>  
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-  
   </script>
-  <script src="js/cors.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>

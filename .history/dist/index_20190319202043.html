@@ -58,16 +58,16 @@
     <div class="box-con tran"> 
      <div class="login-con f-l"> 
       <div class="form-group"> 
-       <input type="text" placeholder="手机号码" id="phone" /> 
+       <input type="text" placeholder="手机号码" /> 
        <span class="error-notic">邮箱/手机号码不正确</span> 
       </div> 
       <div class="form-group"> 
-       <input type="password" placeholder="验证码" id="verify" /> 
+       <input type="password" placeholder="密码" /> 
        <span class="error-notic">密码不正确</span> 
        <button id="veriftBtn">获取验证码</button>
       </div> 
       <div class="form-group"> 
-          <!-- <input type="verifyInput" placeholder="验证码" />  -->
+          <input type="verifyInput" placeholder="验证码" /> 
           <span class="error-notic">密码不正确</span> 
           <img src="http://127.0.0.1:8000/api/other/captcha" alt="" id="verifyImg">
          </div> 
@@ -406,36 +406,12 @@
   <script>
     // 获取验证码
     $('#veriftBtn').on('click',function(){
-      var phone = $('#phone').val();
-      var verify = $('#verify').val();
 
-      console.log('phone',phone)
-      console.log('verify',verify)
-      $.ajax({
-        type:"post",    // 请求类型
-        url:"https://www.icode121.com/api/user/ajax/login/get_cellphone_code",    // 请求URL
-        data:{
-          "user_phone":phone,
-          "captcha":verify
-        },    // 请求参数 即是 在Servlet中 request.getParement();可以得到的字符串
-        dataType:"json",    // 数据返回类型
-        cache:false, // 是否缓存
-        async:true,    // 默认为true 异步请求
-        success:function(result){    // 成功返回的结果(响应)
-        console.log(result)
-            // console.info(result);
-            // if(result){
-            //     $("#label1").text("正确");
-            // }else{
-            //     $("#label1").text("错误");
-            // }
-        }
-      })
     })
     // 点击图片验证码
     $('#verifyImg').on('click',function(){
       console.log('12')
-        $('#verifyImg').attr('src','https://www.icode121.com/api/other/captcha?rnd'+ Math.random())
+        $('#verifyImg').attr('src','http://127.0.0.1:8000/api/other/captcha?rnd'+ Math.random())
     })
   </script>
   <script type="text/javascript">
@@ -721,9 +697,7 @@
 
 	</script>  
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-  
   </script>
-  <script src="js/cors.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>

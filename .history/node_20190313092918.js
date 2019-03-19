@@ -6,16 +6,8 @@ const bodyParser = require('body-parser')
 var proxy = require('http-proxy-middleware');
 //方法1：通过express.static访问静态文件，这里访问的是ajax.html
 // app.use(express.static("public"));
-var proxyPath = "http://127.0.0.1:8000";//目标后端服务地址
-var proxyOption ={
-    target:proxyPath,
-    changeOrigoin:true,
-    ws: true,
-    pathRewrite: { '^/api/user/ajax/login/get_cellphone_code': '/api/user/ajax/login/get_cellphone_code' }
-};
-
 app.use(express.static(path.join(__dirname, 'dist')))
-app.use("/api/user/ajax/login/get_cellphone_code",proxy(proxyOption));
+
 // app.use(bodyParser.urlencoded({
 // 	extended:false
 // }))

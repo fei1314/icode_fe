@@ -24,7 +24,69 @@
   <script src="js/modernizr-2.6.2.min.js"></script> 
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
   </script>
- 
+  <script>
+    $(document).ready(function() {
+      //打开会员登录 
+      $("#Login_start_").click(function() {
+        $("#regist_container").hide();
+        $("#_close").show();
+        $("#_start").animate({
+          left: '350px',
+          height: '520px',
+          width: '400px'
+        }, 500, function() {
+          $("#login_container").show(500);
+          $("#_close").animate({
+            height: '40px',
+            width: '40px'
+          }, 500);
+        });
+      });
+      //打开会员注册
+      $("#Regist_start_").click(function() {
+        $("#login_container").hide();
+        $("#_close").show();
+        $("#_start").animate({
+          left: '350px',
+          height: '520px',
+          width: '400px'
+        }, 500, function() {
+          $("#regist_container").show(500);
+          $("#_close").animate({
+            height: '40px',
+            width: '40px'
+          }, 500);
+        });
+      });
+      //关闭
+      $("#_close").click(function() {
+        
+        $("#_close").animate({
+          height: '0px',
+          width: '0px'
+        }, 500, function() {
+          $("#_close").hide(500);
+          $("#login_container").hide(500);
+          $("#regist_container").hide(500);
+          $("#_start").animate({
+            left: '0px',
+            height: '0px',
+            width: '0px'
+          }, 500);
+        });
+      });
+      //去 注册
+      $("#toRegist").click(function(){
+        $("#login_container").hide(500);
+        $("#regist_container").show(500);
+      });
+      //去 登录
+      $("#toLogin").click(function(){
+        $("#regist_container").hide(500);
+        $("#login_container").show(500);
+      });
+    });
+  </script>
   <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]--> 
@@ -35,154 +97,149 @@
    <nav class="fh5co-nav" role="navigation"> 
     <div class="container"> 
      <div class="row"> 
-      <div class="col-xs-2"> 
+      <div class="col-xs-3"> 
        <div id="fh5co-logo">
         <a href="index.html">One to One</a>
        </div> 
       </div> 
-      <div class="col-xs-9 text-right  menu-1"> 
+      <div class="col-xs-9 text-right menu-1"> 
        <ul> 
         <li class="active"><a href="index.html">首页</a></li> 
         <li><a href="work.html">课程体系</a></li> 
-        <li > <a href="services.html" >活动</a> 
+        <li> <a href="services.html">活动</a> 
          </li> 
          <li><a href="about.html">关于我们</a></li> 
         <li><a href="contact.html">联系我们</a></li> 
-        <li class="btn-cta" id="login"><a href="#"><span>登录</span></a></li> 
+        <li class="btn-cta"><a href="#"><span>登录</span></a></li> 
        </ul> 
       </div> 
      </div> 
     </div> 
    </nav> 
-   <div class="login-box"> 
-    <div class="box-con tran"> 
-     <div class="login-con f-l"> 
-      <div class="form-group"> 
-       <input type="text" placeholder="手机号码" id="phone" /> 
-       <span class="error-notic">邮箱/手机号码不正确</span> 
-      </div> 
-      <div class="form-group"> 
-       <input type="password" placeholder="验证码" id="verify" /> 
-       <span class="error-notic">密码不正确</span> 
-       <button id="veriftBtn">获取验证码</button>
-      </div> 
-      <div class="form-group"> 
-          <!-- <input type="verifyInput" placeholder="验证码" />  -->
-          <span class="error-notic">密码不正确</span> 
-          <img src="http://127.0.0.1:8000/api/other/captcha" alt="" id="verifyImg">
+   <div>
+    <div class="login-box"> 
+      <div class="box-con tran"> 
+       <div class="login-con f-l"> 
+        <div class="form-group"> 
+         <input type="text" placeholder="邮箱/手机号码" /> 
+         <span class="error-notic">邮箱/手机号码不正确</span> 
+        </div> 
+        <div class="form-group"> 
+         <input type="password" placeholder="密码" /> 
+         <span class="error-notic">密码不正确</span> 
+        </div> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">登录</a> <img class="loading" src="images/loading.gif" style="display:block" /> </button> 
+        </div> 
+        <div class="from-line"></div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran"></i></a> 
+        </div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-reset a-tag tran">忘记密码？重置 <i class="iconfont tran"></i></a> 
+        </div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-other a-tag tran">使用第三方帐号登录<i class="iconfont tran"></i></a> 
+        </div> 
+       </div> 
+       <div class="signup f-l"> 
+        <div class="form-group"> 
+         <div class="signup-form"> 
+          <input type="text" placeholder="邮箱" class="email-mobile" onblur="verify.verifyEmail(this)" /> 
+          <a href="javascript:;" class="signup-select">手机注册</a> 
          </div> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">登录</a> <img class="loading" src="images/loading.gif" style="display:block" /> </button> 
-      </div> 
-      <div class="from-line"></div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran"></i></a> 
-      </div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-reset a-tag tran">忘记密码？重置 <i class="iconfont tran"></i></a> 
-      </div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-other a-tag tran">使用第三方帐号登录<i class="iconfont tran"></i></a> 
+         <span class="error-notic">邮箱格式不正确</span> 
+        </div> 
+        <div class="signup-email"> 
+         <div class="form-group"> 
+          <input type="text" placeholder="您的名字" /> 
+         </div> 
+         <div class="form-group"> 
+          <input type="password" placeholder="密码（字母、数字，至少6位）" onblur="verify.PasswordLenght(this)" /> 
+          <span class="error-notic">密码长度不够</span> 
+         </div> 
+         <div class="form-group"> 
+          <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">注册</a> <img class="loading" src="images/loading.gif" /> </button> 
+         </div> 
+         <p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p> 
+        </div> 
+        <div class="signup-tel" style="display:none"> 
+         <div class="signup-form" id="message-inf" style="display:none"> 
+          <input type="text" placeholder="短信验证码" style="width:180px;" onblur="verify.VerifyCount(this)" /> 
+          <a href="javascript:;" class="reacquire">重新获取（59）</a> 
+          <span class="error-notic">验证码输入错误</span> 
+         </div> 
+         <div class="form-group"> 
+          <button type="submit" class="tran get-message pr"> <a href="javascript:;" class="tran">获取短信验证码</a> <img class="loading" src="images/loading.gif" /> </button> 
+         </div> 
+        </div> 
+        <div class="from-line"></div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-login a-tag tran blue-border">已有帐号？登录<i class="iconfont tran"></i></a> 
+        </div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-other a-tag tran">使用第三方帐号登录<i class="iconfont tran"></i></a> 
+        </div> 
+       </div> 
+       <div class="other-way f-l"> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">QQ帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
+        </div> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">新浪微博帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
+        </div> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">微信帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
+        </div> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">网易帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
+        </div> 
+        <div class="from-line"></div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran"></i></a> 
+        </div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran"></i></a> 
+        </div> 
+       </div> 
+       <div class="mimachongzhi f-l"> 
+        <div class="form-group"> 
+         <input type="text" placeholder="请输入您的邮箱地址" /> 
+         <span class="error-notic">邮箱格式不正确</span> 
+        </div> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">发送重置密码邮件</a> <img class="loading" src="images/loading.gif" /> </button> 
+        </div> 
+        <div class="from-line"></div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-signup	a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran"></i></a> 
+        </div> 
+        <div class="form-group"> 
+         <a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran"></i></a> 
+        </div> 
+       </div> 
+       <div class="mobile-success f-l"> 
+        <p>手机号 <span>186****7580</span> 验证成功</p> 
+        <p>请完善您的账号信息，您也可以<a href="#">绑定现有账号</a></p> 
+        <div class="form-group"> 
+         <input type="text" placeholder="邮箱" class="email-mobile" onblur="verify.verifyEmail(this)" /> 
+         <span class="error-notic">邮箱格式不正确</span> 
+        </div> 
+        <div class="form-group"> 
+         <input type="text" placeholder="您的名字" /> 
+        </div> 
+        <div class="form-group"> 
+         <input type="password" placeholder="密码（字母、数字，至少6位）" onblur="verify.PasswordLenght(this)" /> 
+         <span class="error-notic">密码长度不够</span> 
+        </div> 
+        <div class="form-group"> 
+         <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">注册</a> <img class="loading" src="images/loading.gif" /> </button> 
+        </div> 
+        <p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p> 
+       </div> 
       </div> 
      </div> 
-     <div class="signup f-l"> 
-      <div class="form-group"> 
-       <div class="signup-form"> 
-        <input type="text" placeholder="邮箱" style="position: relative;
-        left: -10px;" class="email-mobile" onblur="verify.verifyEmail(this)" /> 
-        <a href="javascript:;" class="signup-select">手机注册</a> 
-       </div> 
-       <span class="error-notic">邮箱格式不正确</span> 
-      </div> 
-      <div class="signup-email"> 
-       <div class="form-group"> 
-        <input type="text" placeholder="您的名字" /> 
-       </div> 
-       <div class="form-group"> 
-        <input type="password" placeholder="密码（字母、数字，至少6位）" onblur="verify.PasswordLenght(this)" /> 
-        <span class="error-notic">密码长度不够</span> 
-       </div> 
-       <div class="form-group"> 
-        <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">注册</a> <img class="loading" src="images/loading.gif" /> </button> 
-       </div> 
-       <p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p> 
-      </div> 
-      <div class="signup-tel" style="display:none"> 
-       <div class="signup-form" id="message-inf" style="display:none"> 
-        <input type="text" placeholder="短信验证码" style="width:180px;" onblur="verify.VerifyCount(this)" /> 
-        <a href="javascript:;" class="reacquire">重新获取（59）</a> 
-        <span class="error-notic">验证码输入错误</span> 
-       </div> 
-       <div class="form-group"> 
-        <button type="submit" class="tran get-message pr"> <a href="javascript:;" class="tran">获取短信验证码</a> <img class="loading" src="images/loading.gif" /> </button> 
-       </div> 
-      </div> 
-      <div class="from-line"></div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-login a-tag tran blue-border">已有帐号？登录<i class="iconfont tran"></i></a> 
-      </div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-other a-tag tran">使用第三方帐号登录<i class="iconfont tran"></i></a> 
-      </div> 
-     </div> 
-     <div class="other-way f-l"> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">QQ帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
-      </div> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">新浪微博帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
-      </div> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">微信帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
-      </div> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">网易帐号登录</a> <img class="loading" src="images/loading.gif" /> </button> 
-      </div> 
-      <div class="from-line"></div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran"></i></a> 
-      </div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran"></i></a> 
-      </div> 
-     </div> 
-     <div class="mimachongzhi f-l"> 
-      <div class="form-group"> 
-       <input type="text" placeholder="请输入您的邮箱地址" /> 
-       <span class="error-notic">邮箱格式不正确</span> 
-      </div> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">发送重置密码邮件</a> <img class="loading" src="images/loading.gif" /> </button> 
-      </div> 
-      <div class="from-line"></div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-signup	a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran"></i></a> 
-      </div> 
-      <div class="form-group"> 
-       <a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran"></i></a> 
-      </div> 
-     </div> 
-     <div class="mobile-success f-l"> 
-      <p>手机号 <span>186****7580</span> 验证成功</p> 
-      <p>请完善您的账号信息，您也可以<a href="#">绑定现有账号</a></p> 
-      <div class="form-group"> 
-       <input type="text" placeholder="邮箱" class="email-mobile" onblur="verify.verifyEmail(this)" /> 
-       <span class="error-notic">邮箱格式不正确</span> 
-      </div> 
-      <div class="form-group"> 
-       <input type="text" placeholder="您的名字" /> 
-      </div> 
-      <div class="form-group"> 
-       <input type="password" placeholder="密码（字母、数字，至少6位）" onblur="verify.PasswordLenght(this)" /> 
-       <span class="error-notic">密码长度不够</span> 
-      </div> 
-      <div class="form-group"> 
-       <button type="submit" class="tran pr"> <a href="javascript:;" class="tran">注册</a> <img class="loading" src="images/loading.gif" /> </button> 
-      </div> 
-      <p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p> 
-     </div> 
-    </div> 
-   </div> 
+   </div>
    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);"> 
     <div class="overlay"></div> 
     
@@ -192,11 +249,11 @@
       <div class="col-md-8 col-md-offset-2 text-center"> 
        <div class="display-t"> 
         <div class="display-tc animate-box" data-animate-effect="fadeIn"> 
-         <h1 id="title">少儿编程时代已经来临</h1> 
+         <h1>少儿编程时代已经来临</h1> 
          <div class="row"> 
           <form class="form-inline" id="fh5co-header-subscribe"> 
            <div class="col-md-8 col-md-offset-2"> 
-            <div class="form-group" id="search_input"> 
+            <div class="form-group"> 
              <input type="text" class="form-control" id="email" placeholder="Enter your email" /> 
              <button type="submit" class="btn btn-default">Join Now</button> 
             </div> 
@@ -402,42 +459,6 @@
   <div class="gototop js-top"> 
    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a> 
   </div> 
-
-  <script>
-    // 获取验证码
-    $('#veriftBtn').on('click',function(){
-      var phone = $('#phone').val();
-      var verify = $('#verify').val();
-
-      console.log('phone',phone)
-      console.log('verify',verify)
-      $.ajax({
-        type:"post",    // 请求类型
-        url:"https://www.icode121.com/api/user/ajax/login/get_cellphone_code",    // 请求URL
-        data:{
-          "user_phone":phone,
-          "captcha":verify
-        },    // 请求参数 即是 在Servlet中 request.getParement();可以得到的字符串
-        dataType:"json",    // 数据返回类型
-        cache:false, // 是否缓存
-        async:true,    // 默认为true 异步请求
-        success:function(result){    // 成功返回的结果(响应)
-        console.log(result)
-            // console.info(result);
-            // if(result){
-            //     $("#label1").text("正确");
-            // }else{
-            //     $("#label1").text("错误");
-            // }
-        }
-      })
-    })
-    // 点击图片验证码
-    $('#verifyImg').on('click',function(){
-      console.log('12')
-        $('#verifyImg').attr('src','https://www.icode121.com/api/other/captcha?rnd'+ Math.random())
-    })
-  </script>
   <script type="text/javascript">
 		var clock = '';
 		var nums = 30;
@@ -473,14 +494,7 @@
   
 
   <script>
-    // 登录逻辑
-    $('#login').on('click',function(){
-      $('.login-box').css('display','block')
-      $('.overlay').css('display','block')
-      $('#search_input').css('display','none')
-      $('#title').css('display','none')
-    })
-  
+
 		var _handle='';//储存电话是否填写正确
 
 		$(function(){
@@ -721,9 +735,7 @@
 
 	</script>  
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-  
   </script>
-  <script src="js/cors.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>

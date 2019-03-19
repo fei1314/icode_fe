@@ -413,7 +413,7 @@
       console.log('verify',verify)
       $.ajax({
         type:"post",    // 请求类型
-        url:"https://www.icode121.com/api/user/ajax/login/get_cellphone_code",    // 请求URL
+        url:"/api/user/ajax/login/get_cellphone_code",    // 请求URL
         data:{
           "user_phone":phone,
           "captcha":verify
@@ -435,7 +435,7 @@
     // 点击图片验证码
     $('#verifyImg').on('click',function(){
       console.log('12')
-        $('#verifyImg').attr('src','https://www.icode121.com/api/other/captcha?rnd'+ Math.random())
+        $('#verifyImg').attr('src','http://127.0.0.1:8000/api/other/captcha?rnd'+ Math.random())
     })
   </script>
   <script type="text/javascript">

@@ -11,7 +11,7 @@ var proxyOption ={
     target:proxyPath,
     changeOrigoin:true,
     ws: true,
-    pathRewrite: { '^/api/user/ajax/login/get_cellphone_code': '/api/user/ajax/login/get_cellphone_code' }
+    pathRewrite: { '^/api/user/ajax/login/get_cellphone_code': '/' }
 };
 
 app.use(express.static(path.join(__dirname, 'dist')))

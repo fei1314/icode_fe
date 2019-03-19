@@ -67,7 +67,7 @@
        <button id="veriftBtn">获取验证码</button>
       </div> 
       <div class="form-group"> 
-          <!-- <input type="verifyInput" placeholder="验证码" />  -->
+          <input type="verifyInput" placeholder="验证码" /> 
           <span class="error-notic">密码不正确</span> 
           <img src="http://127.0.0.1:8000/api/other/captcha" alt="" id="verifyImg">
          </div> 
@@ -413,7 +413,7 @@
       console.log('verify',verify)
       $.ajax({
         type:"post",    // 请求类型
-        url:"https://www.icode121.com/api/user/ajax/login/get_cellphone_code",    // 请求URL
+        url:"http://127.0.0.1:8000/api/user/ajax/login/get_cellphone_code",    // 请求URL
         data:{
           "user_phone":phone,
           "captcha":verify
@@ -435,7 +435,7 @@
     // 点击图片验证码
     $('#verifyImg').on('click',function(){
       console.log('12')
-        $('#verifyImg').attr('src','https://www.icode121.com/api/other/captcha?rnd'+ Math.random())
+        $('#verifyImg').attr('src','http://127.0.0.1:8000/api/other/captcha?rnd'+ Math.random())
     })
   </script>
   <script type="text/javascript">
@@ -721,9 +721,7 @@
 
 	</script>  
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-  
   </script>
-  <script src="js/cors.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
